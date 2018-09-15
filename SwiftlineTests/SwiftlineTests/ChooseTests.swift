@@ -16,7 +16,7 @@ class ChooseTests: QuickSpec {
         
         it("prints a prompt with choices") {
             PromptSettings.reader = DummyPromptReader(toReturn: "1")
-            choose("Select one of  ", choices:  "one", "two", "three")
+            _ = choose("Select one of  ", choices:  "one", "two", "three")
             
             let prompt = [
                 "1. one",

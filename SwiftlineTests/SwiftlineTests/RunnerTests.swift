@@ -46,10 +46,10 @@ class RunnerTests: QuickSpec {
         dummyExecutor = DummyTaskExecutor(status: 1, output: "", error: "123")
         CommandExecutor.currentTaskExecutor = dummyExecutor
         
-        🏃.run("ls", args: ["-all"])
+        _ = 🏃.run("ls", args: ["-all"])
         expect(dummyExecutor.commandsExecuted).to(equal(["ls -all"]))
         
-        🏃.run("echo", args: "bbb")
+        _ = 🏃.run("echo", args: "bbb")
         expect(dummyExecutor.commandsExecuted).to(equal(["ls -all", "echo bbb"]))
       }
     }
@@ -59,7 +59,7 @@ class RunnerTests: QuickSpec {
         let dummyExecutor = DummyTaskExecutor(status: 1, output: "Command output was", error: "error out")
         CommandExecutor.currentTaskExecutor = dummyExecutor
         
-        🏃.run("ls", args: ["-all"]) { s in
+        _ = 🏃.run("ls", args: ["-all"]) { s in
           s.echo = [.Stdout, .Stderr]
         }
         
@@ -77,7 +77,7 @@ class RunnerTests: QuickSpec {
         let dummyExecutor = DummyTaskExecutor(status: 1, output: "", error: "error out")
         CommandExecutor.currentTaskExecutor = dummyExecutor
         
-        🏃.run("ls", args: ["-all"]) { s in
+        _ = 🏃.run("ls", args: ["-all"]) { s in
           s.echo = [.Stdout, .Stderr]
         }
         
@@ -93,7 +93,7 @@ class RunnerTests: QuickSpec {
         let dummyExecutor = DummyTaskExecutor(status: 1, output: "", error: "error out")
         CommandExecutor.currentTaskExecutor = dummyExecutor
         
-        🏃.run("ls", args: ["-all"]) { s in
+        _ = 🏃.run("ls", args: ["-all"]) { s in
           s.echo = .Command
         }
         
@@ -110,7 +110,7 @@ class RunnerTests: QuickSpec {
         let dummyExecutor = DummyTaskExecutor(status: 1, output: "Command output was 2", error: "error out 2")
         CommandExecutor.currentTaskExecutor = dummyExecutor
         
-        🏃.run("ls") {
+        _ = 🏃.run("ls") {
           $0.echo = .Stdout
         }
         
@@ -124,7 +124,7 @@ class RunnerTests: QuickSpec {
         let dummyExecutor = DummyTaskExecutor(status: 1, output: "Command output was 2", error: "error out 2")
         CommandExecutor.currentTaskExecutor = dummyExecutor
         
-        🏃.run("ls") {
+        _ = 🏃.run("ls") {
           $0.echo = .Stderr
         }
         
@@ -138,7 +138,7 @@ class RunnerTests: QuickSpec {
         let dummyExecutor = DummyTaskExecutor(status: 1, output: "Command output was 2", error: "error out 2")
         CommandExecutor.currentTaskExecutor = dummyExecutor
         
-        🏃.run("ls") {
+        _ = 🏃.run("ls") {
           $0.echo = .None
         }
         
@@ -149,7 +149,7 @@ class RunnerTests: QuickSpec {
         let dummyExecutor = DummyTaskExecutor(status: 1, output: "Command output was 2", error: "error out 2")
         CommandExecutor.currentTaskExecutor = dummyExecutor
         
-        🏃.run("ls -all", echo: [.Command])
+        _ = 🏃.run("ls -all", echo: [.Command])
         
         expect(dummyExecutor.commandsExecuted).to(equal(["ls -all"]))
         
